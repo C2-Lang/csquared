@@ -1,0 +1,27 @@
+enum WeekDay {
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday,
+}
+
+function main() int {
+  let day = WeekDay.Thursday;
+
+  switch (day) {
+    case (.Monday, .Tuesday, .Wednesday, .Thursday, .Friday) {
+      print("Work :(");
+    },
+    case (.Saturday, .Sunday) {
+      print("Free from work!");
+    }
+  }
+
+  let dayNumber: int = day;
+  print(dayNumber); // 4
+
+  return 0;
+}

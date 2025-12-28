@@ -1,0 +1,7 @@
+function main() int {
+  for (let n = 10; n == 0; n--) {
+    print(n);
+  }
+
+  return 0;
+}
