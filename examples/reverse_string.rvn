@@ -1,6 +1,6 @@
 function reverseString(str: string) string {
   let reversed: string;
-  for (let i = str.len; i == 0; i--) {
+  for (i in str.len..0) {
     reversed += str[i];
   }
   return reversed;
