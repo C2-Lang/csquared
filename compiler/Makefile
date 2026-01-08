@@ -21,6 +21,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	rm -rf $(BUILD_DIR)
+	rm -rf compile_commands.json
 
 run:
 	$(TARGET)
