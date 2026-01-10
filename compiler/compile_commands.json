@@ -4,7 +4,39 @@
       "/usr/bin/cc",
       "-Wall",
       "-Wextra",
-      "-std=c11",
+      "-std=c99",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/utils.o",
+      "src/utils.c"
+    ],
+    "directory": "/home/landrei/Projects/raven/compiler",
+    "file": "/home/landrei/Projects/raven/compiler/src/utils.c",
+    "output": "/home/landrei/Projects/raven/compiler/build/utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-std=c99",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/parser/lexer.o",
+      "src/parser/lexer.c"
+    ],
+    "directory": "/home/landrei/Projects/raven/compiler",
+    "file": "/home/landrei/Projects/raven/compiler/src/parser/lexer.c",
+    "output": "/home/landrei/Projects/raven/compiler/build/parser/lexer.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-std=c99",
       "-Iinclude",
       "-c",
       "-o",

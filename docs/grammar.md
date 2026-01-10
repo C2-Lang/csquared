@@ -27,7 +27,7 @@ Comment = "//", { anychar - "\n" } ;
 
 boolean = "true" | "false" ;
 
-ident = letter, { letter | digit | "_" } ;
+ident = ( letter, { letter | digit | "_" } ) - reserved ;
 
 number = digit, { digit }, [ ".", digit, { digit } ] ;
 
@@ -279,4 +279,38 @@ Postfix =
 
 Range =
     Postfix, "..", Expr ;
+
+(* Reserved keywords *)
+function = "function" ;
+if = "if" ;
+else = "else" ;
+switch = "switch" ;
+case = "case" ;
+default = "default" ;
+while = "while" ;
+for = "for" ;
+return = "return" ;
+throw = "throw" ;
+struct = "struct" ;
+enum = "enum" ;
+const = "const" ;
+let = "let" ;
+in = "in" ;
+import = "import" ;
+new = "new" ;
+repeat = "repeat" ;
+until = "until" ;
+defer = "defer" ;
+try = "try" ;
+catch = "catch" ;
+spawn = "spawn" ;
+private = "private" ;
+self = "self" ;
+or = "or" ;
+and = "and" ;
+reserved =  
+        if | else | switch | case | default | while | for 
+        | return  | throw | struct | enum | const | let 
+        | in | import | new | repeat | until | defer | try 
+        | catch | spawn | private | self | or | and ;
 ```

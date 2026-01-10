@@ -1,5 +1,5 @@
 CC      := cc
-CFLAGS  := -Wall -Wextra -std=c11 -Iinclude -MMD -MP
+CFLAGS  := -Wall -Wextra -std=c99 -Iinclude -MMD -MP
 LDFLAGS :=
 
 SRC_DIR   := src
