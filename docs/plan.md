@@ -1,39 +1,29 @@
-This is the plan that I'll follow to develop Raven:
+This is the plan that I will follow to develop Raven:
 
-## Phase 0: Completing the specification
-Although the initial design (sketching) is nearly complete, the formal specification still remains.
-
-The specification will serve as a comprehensive reference for development, achieving balance between high-level guidance and necessary detail. While design refinements will continue iteratively in later phases, completing the specification ensures a solid foundation for Phase 1 and subsequent development.
-
----
-## Phase 1: the prototype
-Phase 1 consists of a minimal compiler written in C that generates either C code or direct x86 NASM (only x86 for this phase), with the purpose of:
-
-* Stress-testing the language with edge cases and illegal statements to ensure that both this phase and subsequent phases can handle maximum stress.
-* Identifying design flaws, inconsistencies, and contradictions, and, overall, refining the design as much as possible.
-
-The compiler will start as simple as possible and gradually increase in complexity with each iteration. Progression to the next phase, or continuation within this one, will be determined by the compiler’s ability to pass all tests, which include:
-
-* Tiny tests of one or two lines that either **must** evaluate or **must not** evaluate.
-* Multi-file programs that test a wide range of cases simultaneously.
-
-Once the compiler has successfully:
-
-* Refined the design so that flaws are (almost) eliminated.
-* Structured the syntax and semantics to ensure subsequent phases can handle significant stress.
+## Phase 1: first version of Raven
+Following [the roadmap](https://git.ddoichita.dev/nykenik24/raven#roadmap) located in `README.md`, the first version of Raven focuses purely on:
+- **Iteration**: iterating over and over and over until design is as good as it can get + has been demonstrated to be overall **good** and the compiler is fast and battle-tested.
+- **Optimization**: 1) write something until it's finished 2) optimize 3) test, benchmark 4) repeat from step 2.
 
 ---
-## Phase 2: the v1 compiler
-After refining the design as much as possible in Phase 1, this phase focuses on transforming the minimal prototype compiler to a robust and polished version.
+## Phase 2: further improvments
+> **Not everything here is confirmed. Don't get excited, as I am not sure if everything here will be totally true. Although I CAN promise the standard library and maybe some of the tooling, like the LSP.**
 
-The compiler will prioritize optimizations and functionality over design, which has already been sufficiently iterated, while Phase 1 was not.
-
-The purpose of this phase is to produce a compiler robust enough to be considered version 1 of Raven, built on extensive design iterations and capable of generating native assembly for x86/ARM.
-
-> Raven will initially support Linux, followed by Windows, and finally macOS. Version 1 will only be released once all platforms are supported, though macOS may receive full support slightly later due to hardware availability.
+After version 1 Raven will basically be done, although there will still be things to do:
+- **Standard library**: the earliest after-v1 versions will be dedicated solely to standard library. I want to make Raven a batteries-included language (without too much bloat, I don't want to make Raven programs a RAM killer, specially with today's RAM prices cough cough <small>AI</small>. cough).
+- **Tooling**: Raven obviously needs more than just the compiler for users to love it, because who would write an application in 2026 without LSP (Language Server Protocol, basically live errors, warnings and autocompletion), proper syntax highlighting and debugging/REPL tools? Some people (example: me), yes, but it's necessary that I do at least LSP.
+- **Modules, dependencies, configuration**: as any mature language, I have planned adding a package system and module-based projects to Raven. What I mean exactly with a package system is the ability to download packages directly from the internet with a CLI, which can then be used inside the project. Module-based projects is basically a change in the structure of projects, with "modules" being present, and each module containing members of various files instead of each file being it's own module with it's own members. The auxiliary name is Aviary, but it will be confirmed when I get there.
+- **Further optimization and enhancements**: Phase 1 *seems* enough to settle Raven's design, until you notice that the only way Raven is ever going to be used seriously is if it has already developed a community (even if small) that can give their honest feedback to improve Raven. A lot of languages are currently built by their community (Rust, Zig, Python...), once there is a community the developer(s) are basically forced to resolve as many issues and PRs (Pull Requests) as possible. I am not saying that I expect a community forming around Raven (although I would love that, not gonna lie).
 
 ---
 ## Phase 3: the stage 2 compiler
-Once Raven is sufficiently stable and self-hosting is judged beneficial for development speed and convenience, a compiler written in Raven itself will be developed.
+Once I consider Raven is ready to be ported to itself like other mature languages, I will do exactly that.
 
-This phase, while planned and likely to occur, may take place in later versions and is not required for version 1. The timing of self-hosting cannot really be predicted and will be pursue when appropriate, after Phases 1 and 2.
+For those that didn't understand, up until this phase the pipeline is:\
+Your `.rvn` files -> Compiler -> x86/ARM NASM executable (Linux, Windows or MacOS).
+
+"Porting raven to itself", normally called self-hosting, converts the pipeline to:
+1. Raven's source written in Raven -> Stage 1 compiler (most recent stable release of the C-written compiler) -> Stage-2 compiler
+2. Your `.rvn` files -> Stage-2 compiler -> x86/ARM NASM executable (Linux, Windows or MacOS).
+
+So, instead of building new Raven versions in the painful and not memory managed C, which I chose because it's the best option I know for Raven (would have written it in Rust, but I don't know how to use it and Raven is too ambitious for a first Rust project.), I just write it in Raven, compile that into a binary using the "old" compiler and then give you that binary so you can compile your Raven code.
