@@ -7,11 +7,19 @@ Following [the roadmap](https://git.ddoichita.dev/nykenik24/raven#roadmap) locat
 
 ---
 ## Phase 2: further improvments
-> **Not everything here is confirmed. Don't get excited, as I am not sure if everything here will be totally true. Although I CAN promise the standard library and maybe some of the tooling, like the LSP.**
+Phase 2 consists of all versions after v1.0 and before phase 3's self-hosting. 
+It's mostly focused on adding to the phase 1's compiler and trying to make Raven be more "professional" (double quotes mean Raven will not be SaaS startup garbage, Raven is always FOSS ♥) and beginner-friendly, with things less focused on the internals.
 
-After version 1 Raven will basically be done, although there will still be things to do:
+These are things that are **guaranteed** in phase 2:
+- **A website**, even if it's a static page hosted in GitHub pages, to showcase Raven's features, serve documentation and specification, post updates/changelogs and provide binaries, the compressed source, etc.
 - **Standard library**: the earliest after-v1 versions will be dedicated solely to standard library. 
 I want to make Raven a batteries-included language (without too much bloat, I don't want to make Raven programs a RAM killer, specially with today's RAM prices cough cough <small>AI</small>. cough).
+- **Some promoting**, nothing too excesive or extreme such as massively posting about Raven in public forums (=Reddit), but I will try to get some audience, even if just a small community, to at least know that all the work was worth it.
+
+> **Not everything here is confirmed. Don't get excited, as I am not sure if everything here will be totally true. From the things below, I will prioritize tooling.**
+
+After version 1 Raven will basically be done, although there will still be things to do:
+<!--I want to expand on these, so I might use Header 3s instead of an unordered list and give a lot more information.-->
 - **Tooling**: Raven obviously needs more than just the compiler for users to love it, because who would write an application in 2026 without LSP (Language Server Protocol, basically live errors, warnings and autocompletion), proper syntax highlighting and debugging/REPL tools? 
 Some people (example: me), yes, but it's necessary that I do at least LSP.
 - **Configuring**: something that I **REALLY** want to implement is configuration. Not any configuration, but the kind of one that allows you to modify/disable the entire standard library, add additional behavior 
@@ -22,6 +30,7 @@ Module-based projects is basically a change in the structure of projects, with "
 - **Further optimization and enhancements**: Phase 1 *seems* enough to settle Raven's design, until you notice that the only way Raven is ever going to be used seriously is if it has already developed a community (even if small) that can give their honest feedback to improve Raven. 
 A lot of languages are currently built by their community (Rust, Zig, Python...), once there is a community the developer(s) are basically forced to resolve as many issues and PRs (Pull Requests) as possible. 
 I am not saying that I expect a community forming around Raven (although I would love that, not gonna lie).
+
 
 ---
 ## Phase 3: the stage 2 compiler
