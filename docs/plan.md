@@ -16,7 +16,7 @@ These are things that are **guaranteed** in phase 2:
 I want to make Raven a batteries-included language (without too much bloat, I don't want to make Raven programs a RAM killer, specially with today's RAM prices cough cough <small>AI</small>. cough).
 - **Some promoting**, nothing too excesive or extreme such as massively posting about Raven in public forums (=Reddit), but I will try to get some audience, even if just a small community, to at least know that all the work was worth it.
 
-> **Not everything here is confirmed. Don't get excited, as I am not sure if everything here will be totally true. From the things below, I will prioritize tooling.**
+> **Not everything BELOW is confirmed. Don't get excited, as I am not sure if everything here will be totally true. From the things below, I will prioritize tooling.**
 
 After version 1 Raven will basically be done, although there will still be things to do:
 <!--I want to expand on these, so I might use Header 3s instead of an unordered list and give a lot more information.-->
