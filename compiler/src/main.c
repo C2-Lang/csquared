@@ -80,8 +80,7 @@ int main(void) {
          " " __TIME__ "\n" CRESET);
 
 /* compile with -DRAVEN_SHOW_DEBUG_OUTPUT to show */
-// #ifdef RAVEN_SHOW_DEBUG_OUTPUT
-#if 1 == 1
+#ifdef RAVEN_SHOW_DEBUG_OUTPUT
 
   int line_count = 0;
   for (long i = 0; i < src_len; i++) {
