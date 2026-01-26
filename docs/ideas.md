@@ -14,7 +14,7 @@ V.(T)
 An example:
 ```
 let x: int16 = 5;
-let y: int64 = x.(int64) // int == int32
+let y: int64 = x.(int64)
 ```
 
 ### You can't *downcast*.
