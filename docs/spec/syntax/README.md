@@ -1,6 +1,10 @@
 # Syntax
 Raven's syntax determines how a Raven program **must look**.
 
+## Table of contents
+1. [Abstract syntax](<README#Abstract syntax>)
+2. [Concrete syntax](<README#Concrete syntax>)
+
 ## Abstract syntax
 The abstract syntax dictates how the structure of a Raven program is, not necessarily how it looks.
 
