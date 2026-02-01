@@ -1,6 +1,6 @@
 # Program
-> [!WARNING] Under revision.
-> This file is under revision, as it might contain information that is not accurate.
+>**[!] Under revision.**\
+>This file is under revision, as it might contain information that is not accurate.
 
 ```ts
 interface Program {
