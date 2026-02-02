@@ -2,3 +2,4 @@ build
 compiler/compile_commands.json
 compiler/vgcore*
 .cache
+scripts/
