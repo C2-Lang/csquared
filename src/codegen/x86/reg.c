@@ -1,3 +1,9 @@
+/**
+ * @file reg.c
+ * @brief x86 register definitions and naming
+ * @details Provides register names and conversion functions for AT&T syntax.
+ */
+
 #include <codegen/x86/reg.h>
 
 static const char *reg32_names[] = {"%eax", "%ecx", "%edx", "%ebx",
@@ -9,6 +15,11 @@ static const char *reg16_names[] = {"%ax", "%cx", "%dx", "%bx",
 static const char *reg8_names[] = {"%al", "%cl", "%dl", "%bl",
                                    "%ah", "%ch", "%dh", "%bh"};
 
+/**
+ * @brief Get 32-bit register name
+ * @param reg Register enumeration
+ * @return AT&T syntax register name string
+ */
 const char *reg32_name(x86_reg reg) {
   if (reg >= REG_COUNT)
     return "%eax";
