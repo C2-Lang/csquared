@@ -1,7 +1,6 @@
 <center><img src="assets/logo.png" width="200" style="border-radius: 12%;"></center>
 
 # C² Language
-
 A simple and efficient programming language designed for modern software development.
 
 ## Overview
@@ -50,10 +49,8 @@ if (count > 5) {
 }
 ```
 
+<!--
 ## Documentation
-
-For more information, visit the official documentation or check the examples directory.
-
-## License
-
-See LICENSE file for details.
+- [Documentation](https://github.com/C2-Lang/csq-docs).
+- [Specification](https://github.com/C2-Lang/csq-spec).
+-->

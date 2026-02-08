@@ -14,11 +14,12 @@
 
 /**
  * @brief Prints the entire AST to output.
- * @details Recursively outputs the complete AST structure in a human-readable format.
+ * @details Recursively outputs the complete AST structure in a human-readable
+ * format.
  * @param ctx The AST context to print.
  * @param out Output file stream (typically stdout).
  */
-void ast_print(const ast_context* ctx, FILE* out);
+void ast_print(const ast_context *ctx, FILE *out);
 
 /**
  * @brief Prints a single AST node.
@@ -27,7 +28,7 @@ void ast_print(const ast_context* ctx, FILE* out);
  * @param out Output file stream.
  * @param indent The current indentation level.
  */
-void ast_print_node(const csq_node* node, FILE* out, int indent);
+void ast_print_node(const csq_node *node, FILE *out, int indent);
 
 /**
  * @brief Prints a type structure.
@@ -35,7 +36,7 @@ void ast_print_node(const csq_node* node, FILE* out, int indent);
  * @param type The type to print.
  * @param out Output file stream.
  */
-void ast_print_type(const csq_type* type, FILE* out);
+void ast_print_type(const csq_type *type, FILE *out);
 
 /**
  * @brief Prints a symbol table entry.
@@ -43,6 +44,6 @@ void ast_print_type(const csq_type* type, FILE* out);
  * @param sym The symbol to print.
  * @param out Output file stream.
  */
-void ast_print_symbol(const struct csq_symbol* sym, FILE* out);
+void ast_print_symbol(const struct csq_symbol *sym, FILE *out);
 
 #endif

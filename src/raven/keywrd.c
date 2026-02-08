@@ -21,8 +21,10 @@ struct keyword_entry keywords[] = {
     {"else", 4, TOKEN_KEYWORD_ELSE},
     {"enum", 4, TOKEN_KEYWORD_ENUM},
     {"func", 4, TOKEN_KEYWORD_FUNC},
+    {"null", 4, TOKEN_KEYWORD_NULL},
     {"self", 4, TOKEN_KEYWORD_SELF},
     {"true", 4, TOKEN_KEYWORD_TRUE},
+    {"break", 5, TOKEN_KEYWORD_BREAK},
     {"catch", 5, TOKEN_KEYWORD_CATCH},
     {"defer", 5, TOKEN_KEYWORD_DEFER},
     {"false", 5, TOKEN_KEYWORD_FALSE},
@@ -39,9 +41,9 @@ struct keyword_entry keywords[] = {
     {"switch", 6, TOKEN_KEYWORD_SWITCH},
     {"default", 7, TOKEN_KEYWORD_DEFAULT},
     {"private", 7, TOKEN_KEYWORD_PRIVATE},
+    {"continue", 8, TOKEN_KEYWORD_CONTINUE},
     {"function", 8, TOKEN_KEYWORD_FUNCTION},
-    {"break", 5, TOKEN_KEYWORD_BREAK},
-    {"continue", 8, TOKEN_KEYWORD_CONTINUE}
+    {"optional", 8, TOKEN_KEYWORD_OPTIONAL}
 };
 
 const size_t KEYWORDS_COUNT = sizeof(keywords) / sizeof(keywords[0]);

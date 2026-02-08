@@ -1,6 +1,9 @@
 build
+bin
 tests/__pycache__
 __pycache__
-compiler/compile_commands.json
-compiler/vgcore*
+compile_commands.json
+vgcore*
 .cache
+scripts
+source.rvn
