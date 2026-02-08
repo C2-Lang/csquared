@@ -1,15 +1,9 @@
-# build
 build
 bin
+tests/__pycache__
+__pycache__
 compile_commands.json
-rvnout
-
-# debug
 vgcore*
-
-# clangd
 .cache
-
-# misc.
 scripts
 source.rvn

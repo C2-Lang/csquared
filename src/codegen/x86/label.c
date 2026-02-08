@@ -1,3 +1,10 @@
+/**
+ * @file label.c
+ * @brief Label generation for assembly code
+ * @details Manages creation and storage of unique labels for jumps,
+ * loops, and control flow structures.
+ */
+
 #include <codegen/x86/label.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,6 +12,10 @@
 
 #define INITIAL_CAPACITY 64
 
+/**
+ * @brief Create label generator
+ * @return Allocated label generator
+ */
 label_gen *label_gen_create(void) {
   label_gen *gen = malloc(sizeof(label_gen));
   if (!gen)
@@ -23,6 +34,10 @@ label_gen *label_gen_create(void) {
   return gen;
 }
 
+/**
+ * @brief Free label generator
+ * @param gen Label generator to deallocate
+ */
 void label_gen_free(label_gen *gen) {
   if (!gen)
     return;
@@ -50,6 +65,12 @@ static char *store_label(label_gen *gen, char *label) {
   return label;
 }
 
+/**
+ * @brief Generate new labeled with prefix
+ * @param gen Label generator
+ * @param prefix Prefix for label name
+ * @return Newly allocated label string
+ */
 char *label_gen_new(label_gen *gen, const char *prefix) {
   if (!gen || !prefix)
     return NULL;

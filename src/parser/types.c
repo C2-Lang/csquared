@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <parser/types.h>
 #include <stdlib.h>
 #include <string.h>
@@ -329,3 +330,12 @@ void type_field_list_add(type_field_list *list, const char *name, size_t len,
   list->items[list->count].type = type;
   list->count++;
 }
+=======
+/**
+ * @file types.c
+ * @brief Type system interface
+ * @details Provides the public interface for type system operations.
+ */
+
+#include <parser/types.h>
+>>>>>>> 9851870318cdf73a9049b6f2a01a270b83a05065
