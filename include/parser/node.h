@@ -342,6 +342,7 @@ struct csq_node {
     struct {
       csq_node *base;
       node_list args;
+      bool is_optional;
     } type_spec; /**< Type specification node data */
 
     struct {

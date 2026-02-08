@@ -53,6 +53,7 @@ struct csq_type {
     size_t size;
     size_t align;
     bool is_const;
+    bool is_optional;
     
     union {
         struct {
