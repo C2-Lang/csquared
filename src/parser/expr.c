@@ -29,6 +29,17 @@ csq_node *expr_parse_primary(csq_parser *parser) {
     return node;
   }
 
+  /**
+   * @brief Parse nil literal value
+   * @details Parses the 'nil' keyword and creates a nil literal node.
+   * Used for optional types that may not have a value.
+   */
+  if (parser_match(parser, TOKEN_KEYWORD_NIL)) {
+    csq_node *node = node_create(NODE_LITERAL_NIL, parser->previous.line,
+                                 parser->previous.column);
+    return node;
+  }
+
   if (parser_match(parser, TOKEN_NUMBER)) {
     csq_token token = parser->previous;
     csq_node *node = node_create(NODE_LITERAL_INT, token.line, token.column);

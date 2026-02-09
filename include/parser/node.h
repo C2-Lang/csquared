@@ -55,7 +55,7 @@ typedef enum {
   NODE_LITERAL_FLOAT,  /**< Floating-point literal */
   NODE_LITERAL_STRING, /**< String literal */
   NODE_LITERAL_BOOL,   /**< Boolean literal */
-  NODE_LITERAL_NULL,   /**< Null literal */
+  NODE_LITERAL_NIL,    /**< Nil literal */
   NODE_LITERAL_TAG,    /**< Tag literal */
   NODE_ARRAY_LITERAL,  /**< Array literal */
   NODE_MAP_LITERAL,    /**< Map/dictionary literal */
@@ -342,6 +342,7 @@ struct csq_node {
     struct {
       csq_node *base;
       node_list args;
+      bool is_optional;
     } type_spec; /**< Type specification node data */
 
     struct {
