@@ -101,22 +101,6 @@ csq_token make_token(csq_lexer *lexer, csq_tktype type, size_t line,
 }
 
 /**
- * @brief Report a lexical error through the diagnostic system
- * @param lexer Lexer instance
- * @param type Error type enumeration
- * @param start_col Starting column of error
- * @param length Length of error region
- * @param message Error message
- */
-void report_error(csq_lexer *lexer, DiagErrorType type, size_t start_col,
-                  size_t length, const char *message) {
-  if (lexer->diag) {
-    diag_report(lexer->diag, type, lexer->path, lexer->line, start_col, length,
-                message);
-  }
-}
-
-/**
  * @brief Skip whitespace and return next token
  * @param lexer Lexer instance
  * @return Next non-whitespace token
@@ -176,8 +160,6 @@ csq_token lex_identifier(csq_lexer *lexer) {
 
   if (type == TOKEN_IDENTIFIER) {
     if (length > 0 && isdigit((unsigned char)lexer->start[0])) {
-      report_error(lexer, DIAG_ERROR_INVALID_IDENTIFIER, start_col, length,
-                   "identifier cannot start with a digit");
       return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
     }
   }
@@ -216,8 +198,6 @@ csq_token lex_number(csq_lexer *lexer) {
       }
 
       if (!is_digit_in_base(peek(lexer), base)) {
-        report_error(lexer, DIAG_ERROR_INVALID_BASE, start_col, 2,
-                     "invalid digit for specified number base");
         return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
       }
     }
@@ -230,9 +210,6 @@ csq_token lex_number(csq_lexer *lexer) {
   }
 
   if (!has_digits && base != 10) {
-    report_error(lexer, DIAG_ERROR_MALFORMED_NUMBER, start_col,
-                 (size_t)(lexer->current - lexer->start),
-                 "malformed numeric literal");
     return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
   }
 
@@ -244,17 +221,11 @@ csq_token lex_number(csq_lexer *lexer) {
       has_frac_digits = true;
     }
     if (!has_frac_digits && !has_digits) {
-      report_error(lexer, DIAG_ERROR_MALFORMED_NUMBER, start_col,
-                   (size_t)(lexer->current - lexer->start),
-                   "malformed floating-point number");
       return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
     }
   }
 
   if (isalpha((unsigned char)peek(lexer))) {
-    report_error(lexer, DIAG_ERROR_MALFORMED_NUMBER, start_col,
-                 (size_t)(lexer->current - lexer->start) + 1,
-                 "invalid character in numeric literal");
     return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
   }
 
@@ -287,21 +258,14 @@ static csq_token scan_quoted_literal(csq_lexer *lexer, csq_tktype type) {
       advance(lexer);
       char esc = peek(lexer);
       if (!esc) {
-        report_error(lexer, DIAG_ERROR_UNTERMINATED_STRING, start_col,
-                     (size_t)(lexer->current - lexer->start),
-                     "unterminated string literal");
         return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
       }
       if (!is_valid_escape(esc)) {
-        size_t err_col = lexer->column;
-        report_error(lexer, DIAG_ERROR_INVALID_ESCAPE, err_col, 2,
-                     "invalid escape sequence");
+        /* Invalid escape but continue processing */
       }
       if (esc == 'x') {
         advance(lexer);
         if (!isxdigit((unsigned char)peek(lexer))) {
-          report_error(lexer, DIAG_ERROR_INVALID_ESCAPE, lexer->column, 1,
-                       "invalid hex escape sequence");
           advance(lexer);
         } else {
           advance(lexer);
@@ -313,9 +277,6 @@ static csq_token scan_quoted_literal(csq_lexer *lexer, csq_tktype type) {
         advance(lexer);
       }
     } else if (peek(lexer) == '\n' || peek(lexer) == '\r') {
-      report_error(lexer, DIAG_ERROR_UNTERMINATED_STRING, start_col,
-                   (size_t)(lexer->current - lexer->start),
-                   "unterminated string literal (newline in string)");
       return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
     } else {
       advance(lexer);
@@ -323,9 +284,6 @@ static csq_token scan_quoted_literal(csq_lexer *lexer, csq_tktype type) {
   }
 
   if (peek(lexer) != quote) {
-    report_error(lexer, DIAG_ERROR_UNTERMINATED_STRING, start_col,
-                 (size_t)(lexer->current - lexer->start),
-                 "unterminated string literal");
     return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
   }
 
@@ -350,8 +308,6 @@ csq_token lex_tag(csq_lexer *lexer) {
   advance(lexer);
 
   if (peek(lexer) != '"' && peek(lexer) != '\'') {
-    report_error(lexer, DIAG_ERROR_INVALID_CHAR, start_col, 1,
-                 "tag must be followed by a quoted string");
     return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
   }
 
@@ -482,9 +438,9 @@ csq_token lex_operator(csq_lexer *lexer) {
     return make_token(lexer, TOKEN_COMMA, lexer->line, start_col);
   case '#':
     return make_token(lexer, TOKEN_HASH, lexer->line, start_col);
+  case '?':
+    return make_token(lexer, TOKEN_QUESTION_MARK, lexer->line, start_col);
   default:
-    report_error(lexer, DIAG_ERROR_INVALID_CHAR, start_col, 1,
-                 "invalid character encountered");
     return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
   }
 }
@@ -517,8 +473,6 @@ csq_token lexer_next(csq_lexer *lexer) {
 
   size_t start_col = lexer->column;
   advance(lexer);
-  report_error(lexer, DIAG_ERROR_UNRECOGNIZED_TOKEN, start_col, 1,
-               "unrecognized token");
   return make_token(lexer, TOKEN_ERROR, lexer->line, start_col);
 }
 /**

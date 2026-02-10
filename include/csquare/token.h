@@ -60,6 +60,7 @@
   X(TOKEN_DOT, "DOT")                                                          \
   X(TOKEN_HASH, "HASH")                                                        \
   X(TOKEN_AT, "AT")                                                            \
+  X(TOKEN_QUESTION_MARK, "QUESTION_MARK")                                      \
   X(TOKEN_KEYWORD_FUNCTION, "KEYWORD_FUNCTION")                                \
   X(TOKEN_KEYWORD_FUNC, "KEYWORD_FUNC")                                        \
   X(TOKEN_KEYWORD_IF, "KEYWORD_IF")                                            \
@@ -93,9 +94,9 @@
   X(TOKEN_KEYWORD_STRING, "KEYWORD_STRING")                                    \
   X(TOKEN_KEYWORD_FLOAT, "KEYWORD_FLOAT")                                      \
   X(TOKEN_KEYWORD_BREAK, "KEYWORD_BREAK")                                      \
-  X(TOKEN_KEYWORD_CONTINUE, "KEYWORD_CONTINUE")                                          \
-  X(TOKEN_KEYWORD_OPTIONAL, "KEYWORD_OPTIONAL")                                          \
-  X(TOKEN_KEYWORD_NULL, "KEYWORD_NULL")
+  X(TOKEN_KEYWORD_CONTINUE, "KEYWORD_CONTINUE")                                \
+  X(TOKEN_KEYWORD_OPTIONAL, "KEYWORD_OPTIONAL")                                \
+  X(TOKEN_KEYWORD_NIL, "KEYWORD_NIL")
 
 #define X(token, str) token,
 typedef enum { TOKEN_LIST } csq_tktype;
