@@ -18,7 +18,7 @@ struct csq_parser;
  * @param parser The parser context.
  * @return Pointer to a block node containing the statements.
  */
-csq_node* parse_block(struct csq_parser* parser);
+csq_node *parse_block(struct csq_parser *parser);
 
 /**
  * @brief Parses an if statement.
@@ -26,15 +26,23 @@ csq_node* parse_block(struct csq_parser* parser);
  * @param parser The parser context.
  * @return Pointer to an if statement node.
  */
-csq_node* parse_if_statement(struct csq_parser* parser);
+csq_node *parse_if_statement(struct csq_parser *parser);
 
 /**
  * @brief Parses a while loop.
- * @details Parses while loop with condition and body.
+ * @details Parses a while loop with condition and body.
  * @param parser The parser context.
  * @return Pointer to a while loop node.
  */
-csq_node* parse_while_statement(struct csq_parser* parser);
+csq_node *parse_while_statement(struct csq_parser *parser);
+
+/**
+ * @brief Parses an until loop.
+ * @details Parses an until loop with condition and body.
+ * @param parser The parser context.
+ * @return Pointer to an until loop node.
+ */
+csq_node *parse_until_statement(struct csq_parser *parser);
 
 /**
  * @brief Parses a for loop.
@@ -42,7 +50,7 @@ csq_node* parse_while_statement(struct csq_parser* parser);
  * @param parser The parser context.
  * @return Pointer to a for loop node.
  */
-csq_node* parse_for_statement(struct csq_parser* parser);
+csq_node *parse_for_statement(struct csq_parser *parser);
 
 /**
  * @brief Parses a return statement.
@@ -50,7 +58,7 @@ csq_node* parse_for_statement(struct csq_parser* parser);
  * @param parser The parser context.
  * @return Pointer to a return statement node.
  */
-csq_node* parse_return_statement(struct csq_parser* parser);
+csq_node *parse_return_statement(struct csq_parser *parser);
 
 /**
  * @brief Parses a break statement.
@@ -58,7 +66,7 @@ csq_node* parse_return_statement(struct csq_parser* parser);
  * @param parser The parser context.
  * @return Pointer to a break statement node.
  */
-csq_node* parse_break_statement(struct csq_parser* parser);
+csq_node *parse_break_statement(struct csq_parser *parser);
 
 /**
  * @brief Parses a continue statement.
@@ -66,7 +74,7 @@ csq_node* parse_break_statement(struct csq_parser* parser);
  * @param parser The parser context.
  * @return Pointer to a continue statement node.
  */
-csq_node* parse_continue_statement(struct csq_parser* parser);
+csq_node *parse_continue_statement(struct csq_parser *parser);
 
 /**
  * @brief Parses an expression statement.
@@ -74,6 +82,6 @@ csq_node* parse_continue_statement(struct csq_parser* parser);
  * @param parser The parser context.
  * @return Pointer to an expression statement node.
  */
-csq_node* parse_expression_statement(struct csq_parser* parser);
+csq_node *parse_expression_statement(struct csq_parser *parser);
 
 #endif

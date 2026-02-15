@@ -193,7 +193,7 @@ csq_node *expr_parse_postfix(csq_parser *parser) {
 
       node = access;
     } else if (parser_match(parser, TOKEN_QUESTION_MARK)) {
-      //csq_log(LOG_DEBUG, "source", 196, "Parsing check-for-nil.");
+      // csq_log(LOG_DEBUG, "source", 196, "Parsing check-for-nil.");
       csq_node *nil_check = node_create(NODE_BINARY_OP, parser->previous.line,
                                         parser->previous.column);
       binary_op op = BINOP_EQ;
@@ -328,8 +328,33 @@ csq_node *expr_parse_additive(csq_parser *parser) {
   return node;
 }
 
+csq_node *expr_parse_range(csq_parser *parser) {
+  csq_node *start = expr_parse_additive(parser);
+  if (!start)
+    return NULL;
+
+  if (!parser_match(parser, TOKEN_DOUBLE_DOT)) {
+    return start;
+  }
+
+  csq_node *end = expr_parse_additive(parser);
+
+  csq_node *range =
+      node_create(NODE_RANGE, parser->previous.line, parser->previous.column);
+
+  if (!range) {
+    node_free(end);
+    return start;
+  }
+
+  range->data.range.start = start;
+  range->data.range.end = end;
+
+  return range;
+}
+
 csq_node *expr_parse_comparison(csq_parser *parser) {
-  csq_node *node = expr_parse_additive(parser);
+  csq_node *node = expr_parse_range(parser);
   if (!node)
     return NULL;
 

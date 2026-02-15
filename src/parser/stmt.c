@@ -6,6 +6,8 @@
  * types.
  */
 
+#include "csquare/logger.h"
+#include "csquare/token.h"
 #include <parser/node.h>
 #include <parser/parser.h>
 #include <parser/stmt.h>
@@ -86,6 +88,52 @@ csq_node *parse_while_statement(csq_parser *parser) {
 }
 
 /**
+ * @brief Parse until loop statement
+ * @param parser Parser instance
+ * @return Until loop node
+ */
+csq_node *parse_until_statement(csq_parser *parser) {
+  csq_node *node =
+      node_create(NODE_UNTIL, parser->previous.line, parser->previous.column);
+  if (!node)
+    return NULL;
+
+  node->data.until_stmt.condition = parser_parse_expression(parser);
+
+  parser_consume(parser, TOKEN_OPEN_BRACE,
+                 "Expected '{' after until condition");
+  node->data.until_stmt.body = parse_block(parser);
+
+  return node;
+}
+
+/**
+ * @brief Parse for loop statement
+ * @param parser Parser instance
+ * @return For loop node
+ */
+csq_node *parse_for_statement(csq_parser *parser) {
+  csq_node *node =
+      node_create(NODE_FOR, parser->previous.line, parser->previous.column);
+  if (!node)
+    return NULL;
+
+  parser_advance(parser);
+  node->data.for_stmt.var = parse_identifier_node(parser);
+  parser_advance(parser);
+
+  parser_consume(parser, TOKEN_KEYWORD_IN, "Expected 'in' after for-loop var");
+
+  node->data.for_stmt.iterable = parser_parse_expression(parser);
+
+  parser_consume(parser, TOKEN_OPEN_BRACE,
+                 "Expected '{' after for-loop iterable");
+  node->data.for_stmt.body = parse_block(parser);
+
+  return node;
+}
+
+/**
  * @brief Parse return statement
  * @param parser Parser instance
  * @return Return statement node
@@ -107,8 +155,8 @@ csq_node *parse_expression_statement(csq_parser *parser) {
   csq_node *expr = parser_parse_expression(parser);
   if (!expr) {
     // Skip to next statement to prevent infinite loop
-    while (!parser_check(parser, TOKEN_SEMICOLON) && 
-           !parser_check(parser, TOKEN_CLOSE_BRACE) && 
+    while (!parser_check(parser, TOKEN_SEMICOLON) &&
+           !parser_check(parser, TOKEN_CLOSE_BRACE) &&
            !parser_check(parser, TOKEN_EOF)) {
       parser_advance(parser);
     }

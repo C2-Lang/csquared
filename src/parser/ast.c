@@ -987,6 +987,8 @@ const char *node_type_to_string(node_type type) {
     return "case";
   case NODE_WHILE:
     return "while";
+  case NODE_UNTIL:
+    return "until";
   case NODE_FOR:
     return "for";
   case NODE_REPEAT:

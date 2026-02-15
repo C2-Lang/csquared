@@ -88,6 +88,14 @@ csq_node *expr_parse_bitwise_and(csq_parser *parser);
 csq_node *expr_parse_comparison(csq_parser *parser);
 
 /**
+ * @brief Parses range expression.
+ * @details Handles ranges.
+ * @param parser The parser context.
+ * @return Pointer to the parsed expression AST node.
+ */
+csq_node *expr_parse_range(csq_parser *parser);
+
+/**
  * @brief Parses additive expressions.
  * @details Handles addition and subtraction operators.
  * @param parser The parser context.

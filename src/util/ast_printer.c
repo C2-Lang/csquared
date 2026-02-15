@@ -260,6 +260,15 @@ void ast_print_node(const csq_node *node, FILE *out, int indent) {
     ast_print_node(node->data.expr_stmt.expr, out, child_indent + 1);
     break;
 
+  case NODE_RANGE:
+    print_indent(out, child_indent);
+    fprintf(out, "start:\n");
+    ast_print_node(node->data.range.start, out, child_indent + 1);
+    print_indent(out, child_indent);
+    fprintf(out, "end:\n");
+    ast_print_node(node->data.range.end, out, child_indent + 1);
+    break;
+
   default:
     break;
   }

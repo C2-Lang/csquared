@@ -35,6 +35,7 @@ typedef enum {
   NODE_SWITCH,         /**< Switch statement */
   NODE_CASE,           /**< Case clause in switch */
   NODE_WHILE,          /**< While loop */
+  NODE_UNTIL,          /**< Until loop */
   NODE_FOR,            /**< For loop */
   NODE_REPEAT,         /**< Repeat loop */
   NODE_RETURN,         /**< Return statement */
@@ -102,7 +103,8 @@ typedef enum {
   BINOP_SUB_ASSIGN, /**< Subtraction assignment operator */
   BINOP_MUL_ASSIGN, /**< Multiplication assignment operator */
   BINOP_DIV_ASSIGN, /**< Division assignment operator */
-  BINOP_MOD_ASSIGN  /**< Modulo assignment operator */
+  BINOP_MOD_ASSIGN, /**< Modulo assignment operator */
+  BINOP_DOUBLE_DOT  /**< Double dot operator for ranges */
 } binary_op;
 
 /**
@@ -221,6 +223,11 @@ struct csq_node {
       csq_node *condition;
       csq_node *body;
     } while_stmt; /**< While loop node data */
+
+    struct {
+      csq_node *condition;
+      csq_node *body;
+    } until_stmt; /**< Until loop node data */
 
     struct {
       csq_node *var;

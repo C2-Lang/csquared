@@ -104,7 +104,8 @@ void parser_consume(csq_parser *parser, csq_tktype type, const char *message) {
   parser_error(parser, message);
 }
 
-void parser_error_at(csq_parser *parser, csq_token *token __attribute__((unused)),
+void parser_error_at(csq_parser *parser,
+                     csq_token *token __attribute__((unused)),
                      const char *message __attribute__((unused))) {
   if (parser->panic_mode)
     return;
@@ -112,7 +113,8 @@ void parser_error_at(csq_parser *parser, csq_token *token __attribute__((unused)
   parser->had_error = true;
 }
 
-void parser_error(csq_parser *parser, const char *message __attribute__((unused))) {
+void parser_error(csq_parser *parser,
+                  const char *message __attribute__((unused))) {
   parser_error_at(parser, &parser->current, message);
 }
 
@@ -185,6 +187,16 @@ csq_node *parser_parse_statement(csq_parser *parser) {
 
   if (parser_match(parser, TOKEN_KEYWORD_WHILE)) {
     csq_node *node = parse_while_statement(parser);
+    return node;
+  }
+
+  if (parser_match(parser, TOKEN_KEYWORD_UNTIL)) {
+    csq_node *node = parse_until_statement(parser);
+    return node;
+  }
+
+  if (parser_match(parser, TOKEN_KEYWORD_FOR)) {
+    csq_node *node = parse_for_statement(parser);
     return node;
   }
 
